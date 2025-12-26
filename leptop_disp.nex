@@ -1,0 +1,59 @@
+#NEXUS
+
+BEGIN DATA;
+	DIMENSIONS  NTAX=44 NCHAR=31;
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "  0 1 2 3";
+	MATRIX
+	Dipteris_conjugata            02-101011-112-011102-201121000?
+	Diplopterygium_bancroftii     00-111101-1120100012020010100??
+	Gleichenella_pectinata        00-111101-112110102202000010010
+	Matonia_pectinata             0?-1100?2-?120?11??2020102110??
+	Osmundastrum_cinnamomeum      111011010-1-2010011201-00100110
+	Osmunda_vachellii             11021100011-2010100101-00?00112
+	Osmunda_regalis               11221100001-2010110001-00?00122
+	Osmunda_lancea                112011000-1-2010110101-00?00112
+	Osmunda_javanica              11021100011-2010110101-00100112
+	Osmunda_japonica              112011000-1-2010110001-00?00111
+	Osmunda_claytoniana           11121100011-2010000201-00200111
+	Osmunda_banksiifolia          11021100011-2010110101-00?00112
+	Leptopteris_hymenophylloides  0121110021011110221010-00?00111
+	Leptopteris_wilkesiana        0121110021011110211010-001001?1
+	Leptopteris_fraseri           0121110021011110211010-00100111
+	Todea_barbara                 0111110021010010010211-00100122
+	Todea_papuana                 0111110021010010010211-0010011?
+	Todea_amissa                  0???1???2?010?10010211-0?100111
+	Todites_nanjingensis          01210??12111111020?20?-??300?00
+	Todites_neiridaniensis        01211??121111110201?0?-??300?00
+	Todites_fastuosus             01211??121111110010?0?-??300?00
+	Todites_cacereii              11211???2??10010(02)01101-0?300110
+	Todites_lobatus               112(12)1???2??10?102011?1-0??00111
+	Todites_princeps              11210???2??10?10210010-0?300???
+	Todites_denticulatus          11211???2??10110(02)1021?-??200?00
+	Todites_muelleri              0120???12101011000110?-??200??0
+	Todites_falciformis           0121???12111010000020?-??000?20
+	Todites_pattinsoniorum        ?121???12111010000110?-??300?11
+	Todites_williamsoni           1?201??12111010000110?-0?000?01
+	Todites_chilensis             1?211??121010110001102-0?200020
+	Todites_goeppertianus         11211??121111110001200-0?000110
+	Todites_recurvatus            01210??121011100011200?0?000101
+	Todites_hartzi                0?2?0???2?011100010210?0?000111
+	Todites_baldonii              01210??12101111000011?-??000?20
+	Osmundopsis_zunigai           1120??01010-210020111?-0?000010
+	Osmundopsis_sturii            ??00???10?--211001??1?-??100?20
+	Osmundopsis_rafaelii          1(12)20???1?1012110011012-0??00?10
+	Osmundopsis_nipponica         ??201??1011-21100?1?1?-???00?10
+	Osmundopsis_hillii            ??20???1011-21100?1???-0?100?10
+	Osmundopsis_plectrophora      1?200??1011-2100011012-0?000020
+	Osmundopsis_botryoides        ?(12)(02)00??1011-2000021002-0?000?20
+	Osmundopsis_petiolaris        ?2200??1011-21000?100????000?10
+	Osmundopsis_racemosus         ?2200??10101210002100????000?20
+	Cacumen_expansa               0?22???10?1-21?0002-02-0?000100
+
+;
+END;
+
+begin assumptions;
+	OPTIONS  DEFTYPE=unord PolyTcount=MINSTEPS ;
+	TYPESET * UNTITLED  = unord: 1 4-12 14-29, ord: 2 3 13 30 31;
+	typeset ordered:  ;
+end;
