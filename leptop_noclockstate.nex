@@ -1,0 +1,144 @@
+#NEXUS
+
+BEGIN DATA;
+	DIMENSIONS  NTAX=44 NCHAR=31;
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "  0 1 2 3";
+	MATRIX
+	Dipteris_conjugata            02-101011-112-011102-201121000?
+	Diplopterygium_bancroftii     00-111101-1120100012020010100??
+	Gleichenella_pectinata        00-111101-112110102202000010010
+	Matonia_pectinata             0?-1100?2-?120?11??2020102110??
+	Osmundastrum_cinnamomeum      111011010-1-2010011201-00100110
+	Osmunda_vachellii             11021100011-2010100101-00?00112
+	Osmunda_regalis               11221100001-2010110001-00?00122
+	Osmunda_lancea                112011000-1-2010110101-00?00112
+	Osmunda_javanica              11021100011-2010110101-00100112
+	Osmunda_japonica              112011000-1-2010110001-00?00111
+	Osmunda_claytoniana           11121100011-2010000201-00200111
+	Osmunda_banksiifolia          11021100011-2010110101-00?00112
+	Leptopteris_hymenophylloides  0121110021011110221010-00?00111
+	Leptopteris_wilkesiana        0121110021011110211010-001001?1
+	Leptopteris_fraseri           0121110021011110211010-00100111
+	Todea_barbara                 0111110021010010010211-00100122
+	Todea_papuana                 0111110021010010010211-0010011?
+	Todea_amissa                  0???1???2?010?10010211-0?100111
+	Todites_nanjingensis          01210??12111111020?20?-??300?00
+	Todites_neiridaniensis        01211??121111110201?0?-??300?00
+	Todites_fastuosus             01211??121111110010?0?-??300?00
+	Todites_cacereii              11211???2??10010(0 2)01101-0?300110
+	Todites_lobatus               112(1 2)1???2??10?102011?1-0??00111
+	Todites_princeps              11210???2??10?10210010-0?300???
+	Todites_denticulatus          11211???2??10110(0 2)1021?-??200?00
+	Todites_muelleri              0120???12101011000110?-??200??0
+	Todites_falciformis           0121???12111010000020?-??000?20
+	Todites_pattinsoniorum        ?121???12111010000110?-??300?11
+	Todites_williamsoni           1?201??12111010000110?-0?000?01
+	Todites_chilensis             1?211??121010110001102-0?200020
+	Todites_goeppertianus         11211??121111110001200-0?000110
+	Todites_recurvatus            01210??121011100011200?0?000101
+	Todites_hartzi                0?2?0???2?011100010210?0?000111
+	Todites_baldonii              01210??12101111000011?-??000?20
+	Osmundopsis_zunigai           1120??01010-210020111?-0?000010
+	Osmundopsis_sturii            ??00???10?--211001??1?-??100?20
+	Osmundopsis_rafaelii          1(1 2)20???1?1012110011012-0??00?10
+	Osmundopsis_nipponica         ??201??1011-21100?1?1?-???00?10
+	Osmundopsis_hillii            ??20???1011-21100?1???-0?100?10
+	Osmundopsis_plectrophora      1?200??1011-2100011012-0?000020
+	Osmundopsis_botryoides        ?(1 2)(0 2)00??1011-2000021002-0?000?20
+	Osmundopsis_petiolaris        ?2200??1011-21000?100????000?10
+	Osmundopsis_racemosus         ?2200??10101210002100????000?20
+	Cacumen_expansa               0?22???10?1-21?0002-02-0?000100
+
+;
+END;
+
+begin trees ; 
+tree usertree = [&R] 
+(Dipteris_conjugata ,(Matonia_pectinata ,((Diplopterygium_bancroftii ,Gleichenella_pectinata ),(Osmundastrum_cinnamomeum ,((Osmunda_claytoniana ,((Osmunda_javanica ,(Osmunda_vachellii ,Osmunda_banksiifolia )),(Osmunda_regalis ,(Osmunda_lancea ,Osmunda_japonica )))),(Osmundopsis_sturii ,(Osmundopsis_hillii ,((Cacumen_expansa ,((Todites_goeppertianus ,((Todites_falciformis ,(Todites_baldonii ,(((Leptopteris_fraseri ,(Leptopteris_hymenophylloides ,Leptopteris_wilkesiana )),(Todea_papuana ,(Todea_barbara ,Todea_amissa ))),(Todites_recurvatus ,Todites_hartzi )))),(Todites_fastuosus ,(Todites_nanjingensis ,(Todites_neiridaniensis ,(Todites_princeps ,Todites_denticulatus )))))),((Todites_cacereii ,(Todites_lobatus ,(Todites_pattinsoniorum ,Todites_williamsoni ))),(Todites_muelleri ,Todites_chilensis )))),((Osmundopsis_nipponica ,(Osmundopsis_zunigai ,Osmundopsis_rafaelii )),(Osmundopsis_petiolaris ,(Osmundopsis_plectrophora ,(Osmundopsis_botryoides ,Osmundopsis_racemosus ))))))))))));
+
+end ; 
+
+begin mrbayes;
+	
+	set autoclose=yes nowarn=yes;
+
+	[ordered]
+	
+	ctype ordered: 2 3 9 13 30 31 ;
+
+
+	[paritions]
+
+	charset state_multi = 2 3 4 9 13 17 18 19 20 22 26 30 31 23 ; 
+	charset state_bin = 1 5 6 7 8 10 11 12 14 15 16 21 24 25 27 28 29 ; 
+	partition part= 2:state_bin, state_multi;
+	set partition=part;
+
+	lset coding=variable rates=gamma; [MkV+G]
+	prset applyto=(all) ratepr=variable;
+	unlink statefreq=(all) shape=(all) ratemultiplier=(all) ;
+
+	[Some taxon sets are used for contraints]
+
+	taxset extant_Osmunda =
+	                Osmunda_vachellii Osmunda_lancea Osmunda_regalis
+	                Osmunda_japonica Osmunda_javanica Osmunda_banksiifolia
+	                Osmunda_claytoniana ;
+
+    taxset extinct_Tod = 
+                    Todea_amissa Todites_nanjingensis Todites_neiridaniensis Todites_fastuosus Todites_cacereii 
+                    Todites_lobatus Todites_princeps Todites_denticulatus Todites_muelleri
+                    Todites_falciformis Todites_pattinsoniorum Todites_williamsoni 
+                    Todites_chilensis Todites_goeppertianus Todites_recurvatus Todites_hartzi 
+                    Todites_baldonii ;
+    
+    taxset extant_Lep =
+                     Leptopteris_fraseri Leptopteris_wilkesiana Leptopteris_hymenophylloides ;
+
+    taxset extant_Tod =
+                     Todea_papuana Todea_barbara ;
+	
+    taxset Osmundopsis =
+                     Osmundopsis_zunigai Osmundopsis_sturii Osmundopsis_rafaelii 
+                     Osmundopsis_nipponica Osmundopsis_hillii Osmundopsis_racemosus
+                     Osmundopsis_petiolaris Osmundopsis_plectrophora Osmundopsis_botryoides
+                     ;
+
+	constraint ingroup  hard = 5-. ;
+	constraint cinamout hard = 6-. ;
+	constraint gen_Osmunda hard = extant_Osmunda ;
+	constraint extant_lep hard = extant_Lep ;
+	constraint extant_todea hard = extant_Tod ; 
+	constraint leptopteroid partial = extinct_Tod extant_Lep extant_Tod : extant_Osmunda ; 
+
+
+	prset topologypr=constraints(ingroup, cinamout, gen_Osmunda, leptopteroid, extant_lep,  extant_todea);
+
+
+
+	[Moves for trees]
+	[
+	propset ExtSpr(Tau{all},V{all}) $prob=10;
+	propset ExtTbr(Tau{all},V{all}) $prob=20;
+	propset ParsSPR(Tau{all},V{all})  $prob=30;
+	]
+
+	[startvals tau{1}=usertree;]
+	[startvals tau{2}=usertree;]
+	
+	
+	mcmcp 
+             ngen= 90000000 relburnin=yes burninfrac=0.25 printfreq=1000  
+             samplefreq=1000 nruns =3 nchains=4 savebrlens=yes allcomps=yes 
+             checkpoint=yes checkfreq=1000 stoprule=yes stopval=0.001 temp=0.01
+             append = yes ;
+
+	taxastat;	
+	showp;
+	showmodel;
+
+
+	mcmc;
+	sumt contype=allcompat  savebrparams=yes ;
+
+end;

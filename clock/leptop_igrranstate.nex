@@ -1,0 +1,247 @@
+#NEXUS
+
+BEGIN DATA;
+	DIMENSIONS  NTAX=44 NCHAR=31;
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "  0 1 2 3";
+	MATRIX
+	Dipteris_conjugata            02-101011-112-011102-201121000?
+	Diplopterygium_bancroftii     00-111101-1120100012020010100??
+	Gleichenella_pectinata        00-111101-112110102202000010010
+	Matonia_pectinata             0?-1100?2-?120?11??2020102110??
+	Osmundastrum_cinnamomeum      111011010-1-2010011201-00100110
+	Osmunda_vachellii             11021100011-2010100101-00?00112
+	Osmunda_regalis               11221100001-2010110001-00?00122
+	Osmunda_lancea                112011000-1-2010110101-00?00112
+	Osmunda_javanica              11021100011-2010110101-00100112
+	Osmunda_japonica              112011000-1-2010110001-00?00111
+	Osmunda_claytoniana           11121100011-2010000201-00200111
+	Osmunda_banksiifolia          11021100011-2010110101-00?00112
+	Leptopteris_hymenophylloides  0121110021011110221010-00?00111
+	Leptopteris_wilkesiana        0121110021011110211010-001001?1
+	Leptopteris_fraseri           0121110021011110211010-00100111
+	Todea_barbara                 0111110021010010010211-00100122
+	Todea_papuana                 0111110021010010010211-0010011?
+	Todea_amissa                  0???1???2?010?10010211-0?100111
+	Todites_nanjingensis          01210??12111111020?20?-??300?00
+	Todites_neiridaniensis        01211??121111110201?0?-??300?00
+	Todites_fastuosus             01211??121111110010?0?-??300?00
+	Todites_cacereii              11211???2??10010(0 2)01101-0?300110
+	Todites_lobatus               112(1 2)1???2??10?102011?1-0??00111
+	Todites_princeps              11210???2??10?10210010-0?300???
+	Todites_denticulatus          11211???2??10110(0 2)1021?-??200?00
+	Todites_muelleri              0120???12101011000110?-??200??0
+	Todites_falciformis           0121???12111010000020?-??000?20
+	Todites_pattinsoniorum        ?121???12111010000110?-??300?11
+	Todites_williamsoni           1?201??12111010000110?-0?000?01
+	Todites_chilensis             1?211??121010110001102-0?200020
+	Todites_goeppertianus         11211??121111110001200-0?000110
+	Todites_recurvatus            01210??121011100011200?0?000101
+	Todites_hartzi                0?2?0???2?011100010210?0?000111
+	Todites_baldonii              01210??12101111000011?-??000?20
+	Osmundopsis_zunigai           1120??01010-210020111?-0?000010
+	Osmundopsis_sturii            ??00???10?--211001??1?-??100?20
+	Osmundopsis_rafaelii          1(1 2)20???1?1012110011012-0??00?10
+	Osmundopsis_nipponica         ??201??1011-21100?1?1?-???00?10
+	Osmundopsis_hillii            ??20???1011-21100?1???-0?100?10
+	Osmundopsis_plectrophora      1?200??1011-2100011012-0?000020
+	Osmundopsis_botryoides        ?(1 2)(0 2)00??1011-2000021002-0?000?20
+	Osmundopsis_petiolaris        ?2200??1011-21000?100????000?10
+	Osmundopsis_racemosus         ?2200??10101210002100????000?20
+	Cacumen_expansa               0?22???10?1-21?0002-02-0?000100
+
+;
+END;
+
+
+[user defined starting tree from nonclock analyses]
+begin trees ; 
+tree usertree = [&R] 
+    ((Matonia_pectinata:0.05247615,((Diplopterygium_bancroftii:0.01532109,Gleichenella_pectinata:0.0218595):0.05244617,(Osmundastrum_cinnamomeum:0.008233552,((((Osmunda_vachellii:0.008743539,(Osmunda_javanica:0.003791607,Osmunda_banksiifolia:0.003783003):0.00498509):0.01805095,((Osmunda_regalis:0.025323,Osmunda_japonica:0.00854882):0.01338944,Osmunda_lancea:0.006608219):0.02178251):0.02949853,Osmunda_claytoniana:0.02797902):0.04911826,(((((((((((((Leptopteris_hymenophylloides:0.01052203,(Leptopteris_wilkesiana:0.003563566,Leptopteris_fraseri:0.003385391):0.004201752):0.02771447,((Todea_barbara:0.01351674,Todea_papuana:0.003917378):0.009215306,Todea_amissa:0.004910505):0.03467887):0.03672442,(Todites_princeps:0.03365329,Todites_denticulatus:0.02153124):0.03681949):0.03737507,(Todites_recurvatus:0.01793197,Todites_hartzi:0.00895651):0.02584283):0.03478957,(Todites_falciformis:0.02771281,Todites_baldonii:0.03151848):0.03187472):0.02643977,((Todites_nanjingensis:0.01184109,Todites_neiridaniensis:0.005702254):0.01711547,Todites_fastuosus:0.01360998):0.02406214):0.01934811,(((Todites_cacereii:0.01111412,Todites_lobatus:0.01256818):0.01945004,(Todites_pattinsoniorum:0.008447692,Todites_williamsoni:0.03239831):0.01644988):0.02455244,(Todites_muelleri:0.01935494,Todites_chilensis:0.01224676):0.03695166):0.031481):0.0104739,Todites_goeppertianus:0.009127248):0.07580224,Cacumen_expansa:0.05441086):0.04230327,(Osmundopsis_zunigai:0.04536519,(Osmundopsis_plectrophora:0.009393275,((Osmundopsis_botryoides:0.01400325,Osmundopsis_racemosus:0.01306881):0.01370495,Osmundopsis_petiolaris:0.007995392):0.01803):0.02396858):0.02606454):0.02905885,Osmundopsis_rafaelii:0.01127063):0.01912742,(Osmundopsis_nipponica:0.006000417,Osmundopsis_hillii:0.005779802):0.006667081):0.0188115,Osmundopsis_sturii:0.03819808):0.02712181):0.008765486):0.09948272):0.1010496):0.02598589,Dipteris_conjugata:0);
+end;
+
+
+
+begin mrbayes;
+
+
+	set autoclose=yes nowarn=yes;
+
+    [ordered]
+    
+    ctype ordered: 2 3 9 13 30 31 ;
+
+
+    [paritions]
+
+    charset state_multi = 2 3 4 9 13 17 18 19 20 22 26 30 31 23 ; 
+    charset state_bin = 1 5 6 7 8 10 11 12 14 15 16 21 24 25 27 28 29 ; 
+    partition part= 2:state_bin, state_multi;
+    set partition=part;
+
+    lset coding=variable rates=gamma; [MkV+G]
+    prset applyto=(all) ratepr=variable;
+    unlink statefreq=(all) shape=(all) ratemultiplier=(all) ;
+
+    [Some taxon sets are used for contraints]
+
+    taxset extant_Osmunda =
+                    Osmunda_vachellii Osmunda_lancea Osmunda_regalis
+                    Osmunda_japonica Osmunda_javanica Osmunda_banksiifolia
+                    Osmunda_claytoniana ;
+
+    taxset extinct_Tod = 
+                    Todea_amissa Todites_nanjingensis Todites_neiridaniensis Todites_fastuosus Todites_cacereii 
+                    Todites_lobatus Todites_princeps Todites_denticulatus Todites_muelleri
+                    Todites_falciformis Todites_pattinsoniorum Todites_williamsoni 
+                    Todites_chilensis Todites_goeppertianus Todites_recurvatus Todites_hartzi 
+                    Todites_baldonii ;
+    
+    taxset extant_Lep =
+                     Leptopteris_fraseri Leptopteris_wilkesiana Leptopteris_hymenophylloides ;
+
+    taxset extant_Tod =
+                     Todea_papuana Todea_barbara ;
+    
+    taxset Osmundopsis =
+                     Osmundopsis_zunigai Osmundopsis_sturii Osmundopsis_rafaelii 
+                     Osmundopsis_nipponica Osmundopsis_hillii Osmundopsis_racemosus
+                     Osmundopsis_petiolaris Osmundopsis_plectrophora Osmundopsis_botryoides
+                     ;
+
+
+
+[FAD-LAD and node constraint]
+
+    constraint ingroup  hard = 5-. ;
+    constraint cinamout hard = 6-. ;
+    constraint gen_Osmunda hard = extant_Osmunda ;
+    constraint extant_lep hard = extant_Lep ;
+    constraint extant_todea hard = extant_Tod ; 
+    constraint leptopteroid hard = extinct_Tod extant_Lep extant_Tod Cacumen_expansa; 
+
+calibrate
+        Todea_amissa =		       uniform(48.07,56)
+        Todites_nanjingensis =	   uniform(174.7,184.2) 
+        Todites_cacereii =	       uniform(161.5,201.4)
+        Todites_lobatus	 =	       uniform(254.13,259.5)
+        Todites_princeps =	       uniform(174.69,201.4)
+        Todites_denticulatus =	   uniform(192.9,201.4)
+        Todites_fastuosus =	       uniform(184.2,192.9)
+        Todites_neiridaniensis =   uniform(184.2,192.9)
+        Todites_falciformis =	   uniform(154.8,161.5) 
+        Todites_pattinsoniorum =   uniform(241.46,246.7)
+        Todites_williamsoni =	   uniform(168.2,174.7)
+        Todites_chilensis =	       uniform(201.4,205.7)
+        Todites_muelleri =	       uniform(273,298.89)
+        Todites_goeppertianus =    uniform(201.4,205.7)
+        Todites_recurvatus =	   uniform(201.4,205.7)
+        Todites_hartzi =	       uniform(201.4,205.7)
+        Todites_baldonii =	       uniform(200,228)
+        Osmundopsis_zunigai =	   uniform(227.30,237)
+        Osmundopsis_sturii =	   uniform(174.69,184.19)
+        Osmundopsis_rafaelii =	   uniform(161.5,201.4)
+        Osmundopsis_nipponica =    uniform(184.2,192.9)
+        Osmundopsis_hillii =	   uniform(170.9,174.7)
+        Osmundopsis_plectrophora = uniform(201.4,205.7)
+        Osmundopsis_botryoides =   uniform(228,237)
+        Osmundopsis_petiolaris =   uniform(228,237)
+        Osmundopsis_racemosus =    uniform(228,237)
+        Cacumen_expansa =          uniform(100.5,113)
+        gen_Osmunda =		       offsetexp(238,240)
+        ;
+
+	outgroup Dipteris_conjugata ;
+
+
+    prset topologypr=constraints(ingroup, cinamout, gen_Osmunda, leptopteroid, extant_lep,  extant_todea);
+
+
+
+                    [Tree model]
+
+
+    prset brlenspr = clock:fossilization; [fossilized FBD tree prior]
+
+    prset speciationpr = exp(1); [broad prior on the net speciation rate]
+
+    prset extinctionpr = beta(1,1); [flat prior on the extinction/death rate]
+
+    prset fossilizationpr = beta(1,1); [flat prior on the relative fossilization rate (sampling proportion) - i.e., not assuming the fossil record is good or poor]
+
+    prset sampleprob = 0.62; [prior on the fraction of extant species that are sampled in the analysis: 13/21 = 0.62]
+
+ 
+                            [skyline FBD with rate changes at three time events:
+                                1: root-beginning of TOA event (193) 
+                                2: TOA-Beginning of Antarctica cooling and drifting (49)
+                                3: Antarctica-present]
+    prset samplestrat = random	   [change for random accordingly]
+                                    3: 193 49 16,  [speciation shifts]
+                                    3: 193 49 16,  [extinction shifts]
+                                    3: 193 49 16;  [fossilization shifts]
+
+
+
+                            [places a min age of 300Ma (nearly 50Ma older than the oldest fossil included -246.7Ma) and a mean age (soft max age) of 325 from Pryer et al. (2004)
+                            These values are coherent with Grimm et al. HPD values (2015 Table 1) and the fossil record of Osmundales]
+    prset treeagepr = offsetexp(300, 305);
+
+
+
+
+                    [Setting the clock model]
+
+
+                            [base of the clock rate]
+                            [TL:3.908 / Root age mean:300 = 0.01302 --- ln(0.01302) = -4.341 mean for a lognorm]
+    prset clockratepr=lognormal(-4.341,0.5);
+
+
+                            [clock model for rate variation among lineages: relaxed autocorrelated clock - change for igr accordingly]
+    prset clockvarpr=igr; 
+
+                            [hyperprior on shape of lognormal distribution from TK02 clock - change for igrvarpr accordingly]
+    prset applyto=(all) igrvarpr=exp(20); 
+
+                            [unlink parameters for rate variation among lineages across all partitions - change for igrvar accordingly]
+    unlink igrvar=(all) speciationrate=(all) extinctionrate=(all) ; 
+
+                            [derives a prior probability distribution on tip (besides node) ages from the calibration ages]
+    prset nodeagepr=calibrated;
+
+
+
+[ end of setting ]
+
+
+    [taxastat;]
+    [showmodel;]
+
+
+
+                        [Moves : Increase probability of MCMC moves when sampling parameters]
+                        [moes for different parameters ended up decreasing convergence - so only no ancestors moves are left]
+
+    startvals tau = usertree; [tau topology startvalue set to the usertree]
+
+    [No moves for ancestors: enforce noSA tree model]
+    propset AddBranch (V{all}) $prob=0; 
+    propset DelBranch (V{all}) $prob=0; 
+
+
+    showmoves;
+    showparams;
+
+
+    mcmcp
+        ngen=300000000 relburnin=yes burninfrac=0.25 printfreq=1000  samplefreq=1000
+        nruns =3 nchains=4 temp=0.0015 savebrlens=yes allcomps=yes checkpoint=yes checkfreq=1000
+        stoprule=yes stopval=0.001 starttree=current append=yes
+        ;
+
+    mcmc ;
+    sump relburnin=yes burninfrac=0.25;
+    sumt contype=allcompat ;
+
+
+end;
