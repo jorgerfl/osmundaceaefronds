@@ -1,0 +1,20 @@
+#phygeo tree add -f Osmundaceae.phy --newick Osmundaceae Proyecto.tab Osmundaceae.phy
+./phygeo tree add --newick leptopteroid_tree Proyecto.tab osm_phyinput.nex
+./phygeo tree draw --step 20 --time 1 -o Arbol Proyecto.tab
+./phygeo geo add --type geomotion Proyecto.tab Modelo_tectonico.tab
+./phygeo geo add --type landscape Proyecto.tab Modelo_paisaje.tab
+./phygeo geo weights --add prior.tab Proyecto.tab 								# pixel weights
+./phygeo range add -f data-points.tab --format csv Proyecto.tab Localidades_extant.csv Fos_locations.csv #adding points
+./phygeo range rotate Proyecto.tab #rotating fossil points
+./phygeo range taxa --val Proyecto.tab											#checks whether all terminals have points and viceversa
+./phygeo range kde --lambda 500 -f KDE.tab Proyecto.tab					#points to kernel continuous distribution
+
+#Analisis
+./phygeo diff ml Proyecto.tab 													# infer lambda
+   # leptopteroid_tree	33.593750	-425.452658	<--- best value
+
+./phygeo diff like --lambda 33.593750 -o LIKE Proyecto.tab				# probabilities for pixels - output will be a file with prefix LIKE which stores conditionate probabilities for each pixel
+./phygeo diff particles -p 1000 -i LIKE-Proyecto.tab-leptopteroid_tree-33.593750-down.tab -o PART Proyecto.tab #stochastic mapping
+./phygeo diff freq --kde 1000 -i PART-leptopteroid_tree-33.593750x1000.tab -o FREQ Proyecto.tab #stochastic maps to pixel frequencies - FREQ prefix in the output file
+./phygeo diff map -c 1440 --key Claves_color.tab --gray -i FREQ-Proyecto.tab-PART-leptopteroid_tree-33.593750x1000.tab.tab -o MAP Proyecto.tab #maps
+./phygeo diff speed --tree speed --step 5 --box 5 -i PART-leptopteroid_tree-33.593750x1000.tab Proyecto.tab > speed.txt #distances and speed

@@ -1,0 +1,8 @@
+# phygeo project files
+# data save on: 2025-10-27T00:21:25-03:00
+dataset	path
+geomotion	Modelo_tectonico.tab
+landscape	Modelo_paisaje.tab
+pixweight	prior.tab
+ranges	KDE.tab
+trees	trees.tab
