@@ -698,7 +698,9 @@ extract_temp <- function(clime = "PhanDA_GMSTandCO2_percentiles.csv", limits = N
 }
 
 #PLOT SEVERAL TREES
-plot_multiple_mrbayes_trees <- function(myinput_trees, ncol = 2, nrow = NULL, titles = NULL, filename = NULL, nexfile=F) {
+plot_multiple_mrbayes_trees <- function(myinput_trees, ncol = 2, bsize = 0.05, tsize = 2,
+                                        nrow = NULL, titles = NULL,
+                                        filename = NULL, nexfile=F) {
   # Create empty list
   empty_list <- list()
   
@@ -706,9 +708,9 @@ plot_multiple_mrbayes_trees <- function(myinput_trees, ncol = 2, nrow = NULL, ti
   for(i in 1:length(myinput_trees)){
     # Read the MrBayes tree
     if(isTRUE(nexfile))
-       { tree <- read.nexus(myinput_trees[i]) }
-     else
-       { tree <- read.mrbayes(myinput_trees[i]) }
+    { tree <- read.nexus(myinput_trees[i]) }
+    else
+    { tree <- read.mrbayes(myinput_trees[i]) }
     
     # Create ggtree plot
     treeplot <- ggtree(tree, 
@@ -716,8 +718,8 @@ plot_multiple_mrbayes_trees <- function(myinput_trees, ncol = 2, nrow = NULL, ti
                        ladderize = TRUE, 
                        right = TRUE,
                        branch.length = "none", 
-                       size = 0.05) + 
-      geom_tiplab(size = 2, 
+                       size = bsize) + 
+      geom_tiplab(size = tsize, 
                   color = "black",  
                   offset = 0.1) +
       theme(plot.margin = unit(c(1, 1, 1, 1), "mm")) +  # Reduce margins
