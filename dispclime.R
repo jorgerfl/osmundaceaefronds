@@ -802,10 +802,7 @@ breaks_vec <- c(inferior_limit,
 )
 
 
-#rgbfill <- rgb(red = 100, green = 200, blue = 250, maxColorValue = 255)
 rgbfill <- rgb(red = 120, green = 180, blue = 220, maxColorValue = 255)
-
-# 1. Create the data frame for the rectangles
 
 #1.  STEP - PREPARING DATA ####
 my_processed_data <- prepare_my_data(input_A, input_B)
@@ -1389,10 +1386,14 @@ scaff
 ## Import all log (.p) files using EvoPhylo
 Comb_posterior <- combine_log(".", burnin = 0.25, downsample = 2500)
 
-#Extract speciation and extinction columns
-pertime_rates <- Comb_posterior[,11:26]
-pertime_rate_speciation <- pertime_rates[,1:8]
-pertime_rate_extinction <- pertime_rates[,9:ncol(pertime_rates)]
+# Extract columns by pattern
+speciation_cols <- grep("^net_speciation_", colnames(Comb_posterior), value = TRUE)
+extinction_cols <- grep("^relative_extinction_", colnames(Comb_posterior), value = TRUE)
+fossilization_cols <- grep("^relative_fossilization_", colnames(Comb_posterior), value = TRUE)
+
+pertime_rate_speciation    <- Comb_posterior[, speciation_cols]
+pertime_rate_extinction    <- Comb_posterior[, extinction_cols]
+pertime_rate_fossilization <- Comb_posterior[, fossilization_cols]
 
 #Reshape to long format
 pertime_long_sp <- pertime_rate_speciation %>%
@@ -1402,7 +1403,7 @@ pertime_long_sp <- pertime_rate_speciation %>%
     names_pattern = "(.*)_(\\d+)"
   )
 colnames(pertime_long_sp)[2]  <- "value" 
-pertime_long_sp$type <- "net speciation"
+pertime_long_sp$type <- "net diversification"
 
 #Reshape to long format
 pertime_long_ext <- pertime_rate_extinction %>%
@@ -1414,7 +1415,18 @@ pertime_long_ext <- pertime_rate_extinction %>%
 colnames(pertime_long_ext)[2]  <- "value" 
 pertime_long_ext$type <- "relative extinction"
 
-pertime_long <- rbind(pertime_long_sp, pertime_long_ext)
+#Reshape to long format
+pertime_long_foss <- pertime_rate_fossilization %>%
+  pivot_longer(
+    cols = everything(),
+    names_to = c(".value", "time_period"),
+    names_pattern = "(.*)_(\\d+)"
+  )
+colnames(pertime_long_foss)[2]  <- "value" 
+pertime_long_foss$type <- "relative fossilization"
+
+
+pertime_long <- rbind(pertime_long_sp, pertime_long_ext, pertime_long_foss)
 
 pertime_long <- pertime_long %>%
   mutate(
@@ -1426,11 +1438,10 @@ pertime_long <- pertime_long %>%
       "4" = "TBiv: 16-0")
   )
 
-
 #Plots in the following point
 ratesthroughtime <- ggplot(pertime_long, aes(x = value, fill = type)) +
-  geom_histogram(alpha = 0.6, position = "identity", bins = 25, 
-                 color = "black") +
+  geom_histogram(alpha = 0.6, position = "identity", bins = 30, 
+                  color = "black") +
   facet_wrap(~ time_period, scales = "free") +
   #facet_wrap(~ facet_label, scales = "free")+
   labs(
@@ -1447,7 +1458,7 @@ ratesthroughtime <- ggplot(pertime_long, aes(x = value, fill = type)) +
     axis.title.y = element_text(size = 10),
     plot.title = element_text(hjust = 0.5, size = 12, face = "bold")
   )
-
+ratesthroughtime
 
 #10B. Fig S5 in Urrea et al 2026 ####
 input_tree <- "dated_tree_input.tre"
