@@ -1950,7 +1950,7 @@ plot_multiple_mrbayes_trees(fossiltip_trees,
 
 # Leptopteroid ancestor
 lepclade <- getMRCA(
-  phy = as.phylo(MP),
+  phy = as.phylo(iw15),
   tip = c("Cacumen_expansa", "Todites_muelleri")
 )
 
