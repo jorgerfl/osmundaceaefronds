@@ -1,0 +1,55 @@
+#NEXUS
+[R-package treeio, Tue Jan 13 20:56:26 2026]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 44;
+	TAXLABELS
+		Dipteris_conjugata
+		Matonia_pectinata
+		Diplopterygium_bancroftii
+		Gleichenella_pectinata
+		Cacumen_expansa
+		Osmundopsis_hillii
+		Osmundopsis_sturii
+		Osmundastrum_cinnamomeum
+		Osmunda_claytoniana
+		Osmunda_vachellii
+		Osmunda_javanica
+		Osmunda_banksiifolia
+		Osmunda_lancea
+		Osmunda_regalis
+		Osmunda_japonica
+		Leptopteris_hymenophylloides
+		Leptopteris_wilkesiana
+		Leptopteris_fraseri
+		Todites_baldonii
+		Todites_goeppertianus
+		Todites_fastuosus
+		Todites_nanjingensis
+		Todites_neiridaniensis
+		Todites_falciformis
+		Todites_cacereii
+		Todites_muelleri
+		Todites_chilensis
+		Todites_lobatus
+		Todites_pattinsoniorum
+		Todites_williamsoni
+		Todites_princeps
+		Todites_denticulatus
+		Todites_recurvatus
+		Todites_hartzi
+		Todea_barbara
+		Todea_papuana
+		Todea_amissa
+		Osmundopsis_nipponica
+		Osmundopsis_zunigai
+		Osmundopsis_rafaelii
+		Osmundopsis_petiolaris
+		Osmundopsis_plectrophora
+		Osmundopsis_botryoides
+		Osmundopsis_racemosus
+	;
+END;
+BEGIN TREES;
+	TREE * UNTITLED = [&R] ((((((((Osmundopsis_racemosus,Osmundopsis_botryoides),Osmundopsis_plectrophora),Osmundopsis_petiolaris),((Osmundopsis_rafaelii,Osmundopsis_zunigai),Osmundopsis_nipponica)),(((((((Todea_amissa,Todea_papuana,Todea_barbara),(((Todites_hartzi,Todites_recurvatus),((((((Todites_denticulatus,Todites_princeps),(((Todites_williamsoni,Todites_pattinsoniorum),Todites_lobatus),((Todites_chilensis,Todites_muelleri),Todites_cacereii))),Todites_falciformis),((Todites_neiridaniensis,Todites_nanjingensis),Todites_fastuosus)),Todites_goeppertianus),Todites_baldonii)),((Leptopteris_fraseri,Leptopteris_wilkesiana),Leptopteris_hymenophylloides))),((((Osmunda_japonica,Osmunda_regalis),Osmunda_lancea),((Osmunda_banksiifolia,Osmunda_javanica),Osmunda_vachellii)),Osmunda_claytoniana)),Osmundastrum_cinnamomeum),Osmundopsis_sturii),Osmundopsis_hillii),Cacumen_expansa)),(Gleichenella_pectinata,Diplopterygium_bancroftii)),Matonia_pectinata),Dipteris_conjugata);
+END;

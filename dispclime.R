@@ -699,6 +699,7 @@ extract_temp <- function(clime = "PhanDA_GMSTandCO2_percentiles.csv", limits = N
 
 #PLOT SEVERAL TREES
 plot_multiple_mrbayes_trees <- function(myinput_trees, ncol = 2, bsize = 0.05, tsize = 2,
+                                        pheight = NULL, pwidth = NULL,
                                         nrow = NULL, titles = NULL,
                                         filename = NULL, nexfile=F) {
   # Create empty list
@@ -755,9 +756,11 @@ plot_multiple_mrbayes_trees <- function(myinput_trees, ncol = 2, bsize = 0.05, t
   
   # Save to file if filename provided
   if (!is.null(filename)) {
+    
     # Calculate appropriate dimensions
-    plot_width <- ncol * 4
-    plot_height <- nrow * 3
+    if(is.null(pheight)) {plot_height <- nrow * 3} else {plot_height <- pheight}
+    if(is.null(pwidth))  {plot_width <- ncol * 4} else {plot_width <- pwidth}
+    
     ggsave(filename = filename,
            plot = combined_plot,
            width = plot_width,
@@ -1445,7 +1448,7 @@ ratesthroughtime <- ggplot(pertime_long, aes(x = value, fill = type)) +
   facet_wrap(~ time_period, scales = "free") +
   #facet_wrap(~ facet_label, scales = "free")+
   labs(
-    title = "Distribution of Evolutionary Rates Across Time Periods",
+    title = "",
     x = "Rate Value",
     y = "Frequency",
     fill = "Rate type"
@@ -1522,7 +1525,7 @@ ltt_plot <- ggplot(my_ltt$lttclime, aes(x = time, y = value, color = variable)) 
   )) + 
   labs(x = "Ma",
        y = "LTT",
-       title = "Lineages through time and global mean surface temperature") +
+       title = " ") +
   scale_y_continuous( sec.axis = sec_axis(~ rescale_fun(.), name = "GMST")) +
   theme_minimal()+
   theme(legend.position = "none",
@@ -1666,10 +1669,10 @@ A0 <- base_tree +
     node = lepclade,
     label = "leptopteroids",
     align = FALSE,
-    offset = 140,
-    offset.text = 6,
+    offset = 165,
+    offset.text = 12,
     angle = -90,
-    fontsize = 4
+    fontsize = 3
   ) +
   geom_range(
     range = "age_0.95HPD",
@@ -1703,7 +1706,7 @@ A0
 #Fig. 1
 panelB <- ratesthroughtime / ltt_plot #ratesthroughtime is taken in from previous steps
 A0 | panelB + plot_layout(widths = c(2, 1))  # A0 gets 2/3, panelB gets 1/3
-ggsave("Fig1.svg", device = "svg", width = 37, height = 27, units = "cm")
+ggsave("Fig1.svg", device = "svg", width = 32, height = 23, units = "cm")
 ggsave("Fig1.eps", device = "eps", width = 37, height = 27, units = "cm")
 
 
@@ -1933,9 +1936,12 @@ plot_multiple_mrbayes_trees(fossiltip_trees,
                             filename = "fossiltip_trees.svg")
 
 
-iw5 <- ReadTntTree("iw5.tre"); write.beast(iw5, file = "iw5.nex", translate = F)
-iw10 <- ReadTntTree("iw10.tre"); write.beast(iw10, file = "iw10.nex", translate = F)
-iw15 <- ReadTntTree("iw15.tre"); write.beast(iw15, file = "iw15.nex", translate = F)
+iw5 <- ReadTntTree("iw5.tre")
+write.beast(as.treedata(iw5), file = "iw5.nex", translate = F)
+iw10 <- ReadTntTree("iw10.tre")
+write.beast(as.treedata(iw10), file = "iw10.nex", translate = F)
+iw15 <- ReadTntTree("iw15.tre")
+write.beast(as.treedata(iw15), file = "iw15.nex", translate = F)
 
 fossiltip_trees <- c("iw5.nex",
                      "iw10.nex",
@@ -1949,3 +1955,10 @@ plot_multiple_mrbayes_trees(fossiltip_trees,
                                        "Implied weighting K15",
                                        "Non-clock BI"),
                             filename = "nonclock_trees.svg", nexfile = TRUE)
+
+nonclock_figure <- c("iw15.nex", "leptop_mb.nex.con.tre")
+plot_multiple_mrbayes_trees(nonclock_figure,
+                            ncol = 2, bsize = 1.75, tsize = 2.75,
+                            titles = c("Implied weighting K15",
+                                       "Non-clock BI"),
+                            filename = "newFig1_A_nonclock_trees.svg", nexfile = TRUE)

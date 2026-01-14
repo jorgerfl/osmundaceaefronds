@@ -1,0 +1,55 @@
+#NEXUS
+[R-package treeio, Tue Jan 13 20:56:26 2026]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 44;
+	TAXLABELS
+		Dipteris_conjugata
+		Matonia_pectinata
+		Diplopterygium_bancroftii
+		Gleichenella_pectinata
+		Osmundastrum_cinnamomeum
+		Osmunda_claytoniana
+		Osmunda_vachellii
+		Osmunda_javanica
+		Osmunda_banksiifolia
+		Osmunda_lancea
+		Osmunda_regalis
+		Osmunda_japonica
+		Osmundopsis_sturii
+		Osmundopsis_hillii
+		Cacumen_expansa
+		Todites_goeppertianus
+		Todites_falciformis
+		Todites_baldonii
+		Leptopteris_hymenophylloides
+		Leptopteris_wilkesiana
+		Leptopteris_fraseri
+		Todea_barbara
+		Todea_papuana
+		Todea_amissa
+		Todites_recurvatus
+		Todites_hartzi
+		Todites_fastuosus
+		Todites_nanjingensis
+		Todites_neiridaniensis
+		Todites_princeps
+		Todites_denticulatus
+		Todites_cacereii
+		Todites_lobatus
+		Todites_pattinsoniorum
+		Todites_williamsoni
+		Todites_muelleri
+		Todites_chilensis
+		Osmundopsis_nipponica
+		Osmundopsis_zunigai
+		Osmundopsis_rafaelii
+		Osmundopsis_petiolaris
+		Osmundopsis_plectrophora
+		Osmundopsis_botryoides
+		Osmundopsis_racemosus
+	;
+END;
+BEGIN TREES;
+	TREE * UNTITLED = [&R] ((((((((((((Osmundopsis_racemosus,Osmundopsis_botryoides),Osmundopsis_plectrophora),Osmundopsis_petiolaris),((Osmundopsis_rafaelii,Osmundopsis_zunigai),Osmundopsis_nipponica)),((((Todites_chilensis,Todites_muelleri),(((Todites_williamsoni,Todites_pattinsoniorum),Todites_lobatus),Todites_cacereii)),(((((Todites_denticulatus,Todites_princeps),Todites_neiridaniensis,Todites_nanjingensis),Todites_fastuosus),(((Todites_hartzi,Todites_recurvatus),((Todea_amissa,Todea_papuana,Todea_barbara),((Leptopteris_fraseri,Leptopteris_wilkesiana),Leptopteris_hymenophylloides))),Todites_baldonii),Todites_falciformis),Todites_goeppertianus)),Cacumen_expansa)),Osmundopsis_hillii),Osmundopsis_sturii),((((Osmunda_japonica,Osmunda_regalis),Osmunda_lancea),((Osmunda_banksiifolia,Osmunda_javanica),Osmunda_vachellii)),Osmunda_claytoniana)),Osmundastrum_cinnamomeum),(Gleichenella_pectinata,Diplopterygium_bancroftii)),Matonia_pectinata),Dipteris_conjugata);
+END;
