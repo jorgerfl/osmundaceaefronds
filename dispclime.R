@@ -1665,15 +1665,6 @@ A0 <- base_tree +
     legend.text = element_text(size = 9)) +
   guides(colour = guide_legend(override.aes = list(shape = 16, size = 0))) +
   scale_color_brewer(palette = "Dark2") +
-  geom_cladelab(
-    node = lepclade,
-    label = "leptopteroids",
-    align = FALSE,
-    offset = 165,
-    offset.text = 12,
-    angle = -90,
-    fontsize = 3
-  ) +
   geom_range(
     range = "age_0.95HPD",
     colour = "red",
@@ -1706,8 +1697,8 @@ A0
 #Fig. 1
 panelB <- ratesthroughtime / ltt_plot #ratesthroughtime is taken in from previous steps
 A0 | panelB + plot_layout(widths = c(2, 1))  # A0 gets 2/3, panelB gets 1/3
-ggsave("Fig1.svg", device = "svg", width = 32, height = 23, units = "cm")
-ggsave("Fig1.eps", device = "eps", width = 37, height = 27, units = "cm")
+ggsave("newFig2.svg", device = "svg", width = 32, height = 23, units = "cm")
+ggsave("newFig2.eps", device = "eps", width = 32, height = 27, units = "cm")
 
 
 
@@ -1984,3 +1975,5 @@ BI <- ggtree(noclockBI, layout = "rectangular", ladderize=TRUE, right=TRUE,
   scale_x_continuous(expand = expansion(mult = c(0.2, 0.5)))
 
 MP | BI
+ggsave("NewFig1.svg", device = "svg", width = 32, height = 23, units = "cm")
+ggsave("NewFig1.eps", device = "eps", width = 32, height = 27, units = "cm")
