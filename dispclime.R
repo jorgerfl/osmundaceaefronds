@@ -1942,6 +1942,7 @@ iw10 <- ReadTntTree("iw10.tre")
 write.beast(as.treedata(iw10), file = "iw10.nex", translate = F)
 iw15 <- ReadTntTree("iw15.tre")
 write.beast(as.treedata(iw15), file = "iw15.nex", translate = F)
+noclockBI <- read.mrbayes("leptop_mb.nex.con.tre")
 
 fossiltip_trees <- c("iw5.nex",
                      "iw10.nex",
@@ -1956,9 +1957,30 @@ plot_multiple_mrbayes_trees(fossiltip_trees,
                                        "Non-clock BI"),
                             filename = "nonclock_trees.svg", nexfile = TRUE)
 
-nonclock_figure <- c("iw15.nex", "leptop_mb.nex.con.tre")
-plot_multiple_mrbayes_trees(nonclock_figure,
-                            ncol = 2, bsize = 1.75, tsize = 2.75,
-                            titles = c("Implied weighting K15",
-                                       "Non-clock BI"),
-                            filename = "newFig1_A_nonclock_trees.svg", nexfile = TRUE)
+# Leptopteroid ancestor
+lepclade <- getMRCA(
+  phy = as.phylo(MP),
+  tip = c("Cacumen_expansa", "Todites_muelleri")
+)
+
+MP <- ggtree(iw15, layout = "rectangular", ladderize=TRUE, right=TRUE,
+             branch.length="none", size = 1.75)+
+  geom_hilight(node=lepclade, fill=rgbfill, alpha=0.4, extend = 10) +
+  geom_tree(layout = "rectangular", size = 1.25, colour = "#5E5D5D") +
+  geom_tiplab(size = 2.75, offset = 0.25, fontface = "bold.italic") +
+  scale_x_continuous(expand = expansion(mult = c(0.2, 0.5)))
+
+# Leptopteroid ancestor
+lepclade <- getMRCA(
+  phy = as.phylo(noclockBI),
+  tip = c("Cacumen_expansa", "Todites_muelleri")
+)
+
+BI <- ggtree(noclockBI, layout = "rectangular", ladderize=TRUE, right=TRUE,
+       branch.length="none", size = 1.75)+
+  geom_hilight(node=lepclade, fill=rgbfill, alpha=0.4, extend = 10) +
+  geom_tree(layout = "rectangular", size = 1.25, colour = "#5E5D5D") +
+  geom_tiplab(size = 2.75, offset = 0.25, fontface = "bold.italic") +
+  scale_x_continuous(expand = expansion(mult = c(0.2, 0.5)))
+
+MP | BI
